@@ -27,13 +27,14 @@
     "eject": "react-scripts eject",
     "server:start": "node server.js",
     "server:dev": "nodemon server.js",
-    "start": "yarn server:start",
+    "start": "node server.js",
     "build": "yarn client:build",
     "makeMigrate": "knex migrate:make",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "makeSeed": "knex seed:make",
     "runSeed": "knex seed:run"
+
   },
   "eslintConfig": {
     "extends": [
