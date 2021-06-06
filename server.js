@@ -29,6 +29,21 @@ app.get('/logs', async (req, res) => {
 });
 
 //post
+app.post('/logs', async (req, res) => {
+    await knex('visited').insert({
+        image: req.body.image,
+        name: req.body.name,
+        menu: req.body.menu,
+        genre: req.body.genre,
+        rate: req.body.rate,
+        comment: req.body.rate,
+        lat: req.body.lat,
+        lng: req.body.lng
+    })
+    .then(() => knex.select().from('visited'))
+    .then((datas) => res.send(datas))
+    .catch(err => console.log('error:', err));
+});
 
 //put
 

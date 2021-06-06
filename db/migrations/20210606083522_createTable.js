@@ -7,7 +7,7 @@ exports.up = function(knex) {
         table.string('menu').notNullable();
         table.string('genre');
         table.date('date');
-        table.integer('rate');
+        table.float('rate', 8, 1);
         table.string('comment');
         table.float('lat');
         table.float('lng');
