@@ -46,8 +46,31 @@ app.post('/logs', async (req, res) => {
 });
 
 //put
+app.put('/logs/:id', async (req, res) => {
+    await knex('visited').where('id', req.params.id)
+        .update({
+            image: req.body.image,
+            name: req.body.name,
+            menu: req.body.menu,
+            genre: req.body.genre,
+            rate: req.body.rate,
+            comment: req.body.rate,
+            lat: req.body.lat,
+            lng: req.body.lng
+        })
+        .then(() => knex.select().from('visited'))
+        .then(datas => res.send(datas))
+        .catch(err => console.log('error:', err));
+});
 
 //delete
+app.delete('/logs/:id', async (req, res) => {
+    await knex('visited').where('id', req.params.id)
+        .del()
+        .then(() => knex.select().from('visited'))
+        .then(datas => res.send(datas))
+        .catch(err => console.log('error:', err));
+});
 
 //wishlist table
 //get
