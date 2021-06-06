@@ -2,11 +2,15 @@
 exports.up = function(knex) {
     return knex.schema.createTable('visited', (table) => {
         table.increments();
+        table.string('image');
         table.string('name').notNullable();
         table.string('menu').notNullable();
+        table.string('genre');
         table.date('date');
         table.integer('rate');
-        table.string('favorite');
+        table.string('comment');
+        table.float('lat');
+        table.float('lng');
     });
 };
 

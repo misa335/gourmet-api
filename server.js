@@ -1,8 +1,8 @@
-// require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-// const path = require('path');
-// const knex = require('./db/knex');
+const path = require('path');
+const knex = require('./db/knex');
 
 
 //server
@@ -19,8 +19,31 @@ app.listen(port, () => {
     console.log(`Server has connected on port ${port}🧚✨`);
 });
 
-
 //endpoints
+//visited table
+//get
+app.get('/logs', async (req, res) => {
+    await knex.select().from('visited')
+        .then(datas => res.send(datas))
+        .catch(err => console.log('error:', err));
+});
+
+//post
+
+//put
+
+//delete
+
+//wishlist table
+//get
+
+//post
+
+//put
+
+//delete
+
+//favorite table
 //get
 
 //post
@@ -30,8 +53,8 @@ app.listen(port, () => {
 //delete
 
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/build/index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/build/index.html'));
+});
 
 module.exports = app;
