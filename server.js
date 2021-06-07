@@ -75,6 +75,7 @@ app.delete('/logs/:id', async (req, res) => {
 //wishlist table
 //get
 
+
 //post
 
 //put
@@ -83,12 +84,51 @@ app.delete('/logs/:id', async (req, res) => {
 
 //favorite table
 //get
+app.get('/favs', async (req, res) => {
+    await knex.select().from('favorite')
+        .then(datas => res.send(datas))
+        .catch(err => console.log('error:', err));
+});
 
 //post
+app.post('/favs', async (req, res) => {
+    await knex('favorite').insert({
+        image: req.body.image,
+        name: req.body.name,
+        comment: req.body.rate,
+        genre: req.body.genre,
+        lat: req.body.lat,
+        lng: req.body.lng
+    })
+    .then(() => knex.select().from('favorite'))
+    .then((datas) => res.send(datas))
+    .catch(err => console.log('error:', err));
+});
 
 //put
+app.put('/favs/:id', async (req, res) => {
+    await knex('favorite').where('id', req.params.id)
+        .update({
+            image: req.body.image,
+            name: req.body.name,
+            comment: req.body.rate,
+            genre: req.body.genre,
+            lat: req.body.lat,
+            lng: req.body.lng
+        })
+        .then(() => knex.select().from('favorite'))
+        .then(datas => res.send(datas))
+        .catch(err => console.log('error:', err));
+});
 
 //delete
+app.delete('/favs/:id', async (req, res) => {
+    await knex('favorite').where('id', req.params.id)
+        .del()
+        .then(() => knex.select().from('favorite'))
+        .then(datas => res.send(datas))
+        .catch(err => console.log('error:', err));
+});
 
 
 app.get('*', (req, res) => {
