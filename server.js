@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const knex = require('./db/knex');
+const axios = require('axios');
 
 
 //server
@@ -17,6 +18,19 @@ app.use(express.static(__dirname + '/build'));
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log(`Server has connected on port ${port}🧚✨`);
+});
+
+// const corsOptions = {
+//     origin: 'http://webservice.recruit.co.jp/hotpepper',
+//     optionSuccessStatus: 200
+// };
+
+//get restaurant list
+app.get('/api', async (req, res) => {
+    await axios.get("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ae1f69b84f3d5295&lat=35.66&lng=139.72&range=3&order=4&count=50&lunch=1&genre=G014&format=json")
+    .then(res => console.log(res.data.results.shop))
+    .catch(err => console.log('error:', err));
+    res.send('Hello');
 });
 
 //endpoints
