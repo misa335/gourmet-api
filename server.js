@@ -28,9 +28,12 @@ app.listen(port, () => {
 //get restaurant list
 app.get('/api', async (req, res) => {
     await axios.get("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ae1f69b84f3d5295&lat=35.66&lng=139.72&range=3&order=4&count=50&lunch=1&genre=G014&format=json")
-    .then(res => console.log(res.data.results.shop))
+    .then(data => {
+        console.log(data.data.results.shop);
+        res.json(data.data.results.shop);
+    })
     .catch(err => console.log('error:', err));
-    res.send('Hello');
+    // res.send('Hello');
 });
 
 //endpoints

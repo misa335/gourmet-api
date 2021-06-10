@@ -6,15 +6,18 @@ const ListPlaces = () => {
     const [places, setPlaces] = useState([]);
 
     // get place Lists
-    // const getPlaces = async () => {
-    //     await axios.get("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ae1f69b84f3d5295&lat=35.66&lng=139.72&range=3&order=4&count=50&lunch=1&genre=G014&format=json")
-    //         .then(res => console.log(res.data))
-    //         .catch(err => console.log('error:', err));
-    // }
+    const getPlaces = async () => {
+        await axios.get("/api")
+            .then(res => {
+                console.log("res:", res);
+                console.log("data:", res.data);
+            })
+            .catch(err => console.log('error:', err));
+    }
 
-    // useEffect(() => {
-    //     getPlaces();
-    // }, []);
+    useEffect(() => {
+        getPlaces();
+    }, []);
 
     return (
         <div>
