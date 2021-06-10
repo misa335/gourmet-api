@@ -27,13 +27,19 @@ app.listen(port, () => {
 
 //get restaurant list
 app.get('/api', async (req, res) => {
+    let result = [];
     await axios.get("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=ae1f69b84f3d5295&lat=35.66&lng=139.72&range=3&order=4&count=50&lunch=1&genre=G014&format=json")
-    .then(data => {
-        console.log(data.data.results.shop);
-        res.json(data.data.results.shop);
+    .then(datas => {
+        console.log(datas.data.results.shop);
+        result = datas.data.results.shop;
+        if(result) {
+            res.json(result);
+        } else {
+            res.json('No Results...')
+        }
+        // res.json(datas.data.results.shop);
     })
     .catch(err => console.log('error:', err));
-    // res.send('Hello');
 });
 
 //endpoints
