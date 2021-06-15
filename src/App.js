@@ -1,43 +1,37 @@
 import React from 'react';
 import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+// import AppBar from '@material-ui/core/AppBar';
+// import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
+// import Typography from '@material-ui/core/Typography';
+// import MenuIcon from '@material-ui/icons/Menu';
+import Layout from './components/Layout';
 import ListPlaces from './components/ListPlaces';
-import { classes } from 'istanbul-lib-coverage';
+import { pink } from '@material-ui/core/colors';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#fefefe'
+    },
+    secondary: pink
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+  typography: {
+    fontFamily: 'Ubuntu',
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightBold: 500
+  }
+})
 
 function App() {
-  const classes = useStyles();
   return (
-    <div className="App">
-      <div id="Appbar">
-      <AppBar position="static">
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          🧁🥞Foodie!🍩🍕
-        </Typography>
-        <Button color="inherit">Login</Button>
-      </AppBar>
-      </div>
+    <ThemeProvider theme={theme}>
+    <Layout>
       <ListPlaces />
-    </div>
+    </Layout>
+    </ThemeProvider>
   );
 }
 
