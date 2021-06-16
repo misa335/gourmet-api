@@ -3,6 +3,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import ToolBar from '@material-ui/core/Toolbar';
+import bg from '../bg.jpg';
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -10,7 +11,9 @@ const useStyles = makeStyles((theme) => {
             display: 'flex'
         },
         page: {
-            background: '#f9f9f9',
+            backgroundImage: `url(${bg})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
             width: '100%',
             padding: theme.spacing(3)
         },

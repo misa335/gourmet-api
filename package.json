@@ -32,7 +32,7 @@
     "eject": "react-scripts eject",
     "server:start": "node server.js",
     "server:dev": "nodemon server.js",
-    "start": "yarn server:dev",
+    "start": "node server.js",
     "build": "yarn client:build",
     "makeMigrate": "knex migrate:make",
     "migrate": "knex migrate:latest",
