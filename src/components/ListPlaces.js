@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,9 +32,13 @@ const useStyles = makeStyles((theme) => ({
         transition: theme.transitions.create('transform', {
             duration: theme.transitions.duration.shortest,
         }),
+        flexGrow: 1
     },
     expandOpen: {
         transform: 'rotate(180deg)',
+    },
+    expandIcon: {
+        fontSize: 45
     }
 }));
 
@@ -74,6 +79,11 @@ const ListPlaces = () => {
                     <Card className={classes.root}>
                         <CardHeader
                         title={place.name}
+                        action={
+                            <IconButton aria-label="settings">
+                                <AddIcon />
+                            </IconButton>
+                        }
                         subheader={place.station_name}
                         />
                         <CardMedia
@@ -104,12 +114,14 @@ const ListPlaces = () => {
                                 aria-expanded={expanded}
                                 aria-label="show more"
                             >
-                                <ExpandMoreIcon />
+                                <ExpandMoreIcon className={classes.expandIcon}/>
                             </IconButton>
                         </CardActions>
                         <Collapse in={expanded} timeout="auto" unmountOnExit>
                             <CardContent>
-                                <Typography paragraph>Method:</Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    Method:
+                                </Typography>
                             </CardContent>
                         </Collapse>
                     </Card>
