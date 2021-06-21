@@ -120,7 +120,31 @@ const ListPlaces = () => {
                         <Collapse in={expanded} timeout="auto" unmountOnExit>
                             <CardContent>
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    Method:
+                                    アクセス：{place.access}
+                                    <br/>
+                                    住所：{place.address}
+                                    <br/>
+                                    予算：{place.budget.average}
+                                    <br/>
+                                    カード：{place.card}
+                                    <br/>
+                                    営業時間：{place.open}
+                                    <br/>
+                                    定休日：{place.close}
+                                    <br/>
+                                    禁煙/喫煙：{place.non_smoking}
+                                    <br/>
+                                    wifi：{place.wifi}
+                                    <br/>
+                                    英語メニュー：{place.english}
+                                    <br/>
+                                    駐車場：{place.parking}
+                                    <br/>
+                                    ペット同伴：{place.pet}
+                                    <br/>
+                                    HotPepper掲載ページ：
+                                    <br/>
+                                    {place.urls.pc}
                                 </Typography>
                             </CardContent>
                         </Collapse>
