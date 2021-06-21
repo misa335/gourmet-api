@@ -5,13 +5,17 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
-import { makeStyles, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import GradeRoundedIcon from '@material-ui/icons/GradeRounded';
 import ShareIcon from '@material-ui/icons/Share';
+import Typography from '@material-ui/core/Typography';
+import clsx from 'clsx';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,6 +24,16 @@ const useStyles = makeStyles((theme) => ({
     media: {
         height: 0,
         paddingTop: '56.25%'
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
     }
 }));
 
@@ -27,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 const ListPlaces = () => {
     const classes = useStyles();
     const [places, setPlaces] = useState([]);
+    const [expanded, setExpanded] = useState(false);
 
     // get place Lists
     const getPlaces = async () => {
@@ -41,7 +56,11 @@ const ListPlaces = () => {
                 console.log("places:",places);
             })
             .catch(err => console.log('error:', err));
-    }
+    };
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
 
     useEffect(() => {
         getPlaces();
@@ -77,7 +96,22 @@ const ListPlaces = () => {
                             <IconButton aria-label="share">
                                 <ShareIcon />
                             </IconButton>
+                            <IconButton
+                                className={clsx(classes.expand, {
+                                    [classes.expandOpen]: expanded,
+                                })}
+                                onClick={handleExpandClick}
+                                aria-expanded={expanded}
+                                aria-label="show more"
+                            >
+                                <ExpandMoreIcon />
+                            </IconButton>
                         </CardActions>
+                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                            <CardContent>
+                                <Typography paragraph>Method:</Typography>
+                            </CardContent>
+                        </Collapse>
                     </Card>
                 </Grid>
             ))}
