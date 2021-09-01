@@ -5,13 +5,13 @@ An app that allows users to create a list of eateries.
 - Front-end:
    - React.js
    - Material-UI
-<br/>
+
 - Back-end:
    - Node.js
    - Express.js
    - knex.js
    - PostgresSQL
-<br/>
+
 - Data and APIs:
    - HotPepper API
 
